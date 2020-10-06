@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/Hot_100'
+
+Hot100::CLI.new.call

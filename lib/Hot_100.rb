@@ -1,6 +1,2 @@
-require "Hot_100/version"
-
-module Hot100
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./Hot_100/version"
+require_relative './Hot_100/cli'
