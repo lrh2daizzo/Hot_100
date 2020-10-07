@@ -14,6 +14,7 @@ class Hot100::CLI
             2.
             3.
             4.
+            5.
         DOC
     end
 
