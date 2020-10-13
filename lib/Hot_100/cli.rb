@@ -3,19 +3,14 @@
 class Hot100::CLI
   
     def call 
-        puts "Welcome to Hot 100"
-        Hot100::Scraper.new.get_page 
+        puts "Welcome to The Hot 100"
+        Hot100::Scraper.new.create_songs
+        puts ""
         list_songs
     end
 
     def list_songs
-        puts <<-DOC.gsub /^\s*/, " "
-            1. 
-            2.
-            3.
-            4.
-            5.
-        DOC
+        Hot100::Song.all.each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
     end
 
     

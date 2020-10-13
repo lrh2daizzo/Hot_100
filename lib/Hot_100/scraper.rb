@@ -16,5 +16,10 @@ class Hot100::Scraper
     songs #contains a hash for each song on the chart {rank: 1, name: Franchise, artist: Travis Scott}
   end
     
-
+  def create_songs
+    get_page.each do |c| 
+      Hot100::Song.new_from_collection(c)
+    end
+  end
+  
 end
