@@ -19,6 +19,7 @@ class Hot100::Scraper
   def create_songs
     get_page.each do |c| 
       Hot100::Song.new_from_collection(c)
+      
     end
   end
   
