@@ -5,46 +5,59 @@ class Hot100::CLI
     def call 
         puts "Welcome to The Hot 100"
         Hot100::Scraper.new.create_songs
-        puts "This cli lists the current top 100 songs on the Billboard Chart (in increments of 10)."
-        puts "Enter a number between 1-100 or all (for all the songs)"
-        input = gets.strip
+        puts "This cli lists the current top 100 songs on the Billboard Chart"
         puts ""
-        
-        if (input == 'all')
-            all_songs
-        else
-            number = input.to_i
-            list_songs(number)
-        end
+        start
+    end
 
+    def start
+        input = ""
+
+        while input != 'exit'
+            puts "To see all the songs enter all"
+            puts "If you would like to see a certain ranking, enter that number (1-100)"
+            puts "or enter exit (to exit)"
+            input = gets.strip 
+                if (input == 'all')
+                 all_songs
+                else
+                    number = input.to_i
+                    list_songs(number)
+                end
+            puts ""
+        end
     end
 
     def all_songs
         Hot100::Song.all.each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
     end
 
+    def song_list(start, e)
+        Hot100::Song.all[start..e].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+    end
+
     def list_songs(from_number)
         case from_number
         when 1..10 
-            Hot100::Song.all[0..9].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(0,9)
         when 11..20 
-            Hot100::Song.all[10..19].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(10,19)
         when 21..30 
-            Hot100::Song.all[20..29].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }  
+            song_list(20,29)
         when 31..40 
-            Hot100::Song.all[30..39].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(30,39)
         when 41..50 
-            Hot100::Song.all[40..49].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(40,49)
         when 51..60 
-            Hot100::Song.all[50..59].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(50,59)
         when 61..70 
-            Hot100::Song.all[60..69].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(60,69)
         when 71..80 
-            Hot100::Song.all[70..79].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(70,79)
         when 81..90 
-            Hot100::Song.all[80..89].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(80,89)
         when 91..100 
-            Hot100::Song.all[90..99].each { |song| puts "#{song.rank}.  #{song.name} - #{song.artist} " }
+            song_list(90,99)
         end
         
     end

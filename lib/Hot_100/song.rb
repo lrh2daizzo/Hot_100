@@ -13,7 +13,6 @@ class Hot100::Song
     #constructor - make new songs from hot 100 chart
     def self.new_from_collection(c)
         Hot100::Song.new.tap do |song| c.each { |k,v| song.send("#{k}=", v)}
-            
         end
     end
 
